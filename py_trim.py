@@ -31,30 +31,30 @@ def arguments():
 def main():
     #to do: read in files from folder
     args = arguments()
-    #oldfile = os.path.join(args.path, 'this is a test file.txt')
-    oldfile = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
+    #old_file = os.path.join(args.path, 'this is a test file.txt')
+    old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
 
     if args.rs:
-        newfile = os.path.join(args.path, 'thisisatestfile.txt')
+        new_file = os.path.join(args.path, 'thisisatestfile.txt')
     elif args.su:
-        newfile = os.path.join(args.path, 'this_is_a_test_file.txt')
+        new_file = os.path.join(args.path, 'this_is_a_test_file.txt')
     elif args.sm:
-        newfile = os.path.join(args.path, 'this-is-a-test-file.txt')
+        new_file = os.path.join(args.path, 'this-is-a-test-file.txt')
 
-    os.rename(oldfile, newfile)
+    os.rename(old_file, new_file)
 
     if args.l:
-        fullfile = os.path.basename(newfile).lower()
-        filecase = os.path.join(args.path, fullfile)
+        full_file = os.path.basename(new_file).lower()
+        file_case = os.path.join(args.path, full_file)
     elif args.u:
-        fullfile = os.path.basename(newfile).upper()
-        filecase = os.path.join(args.path, fullfile)
+        full_file = os.path.basename(new_file).upper()
+        file_case = os.path.join(args.path, full_file)
     elif args.c:
-        fullfile = os.path.basename(newfile).lower()
-        filecase = os.path.join(args.path, fullfile)
+        full_file = os.path.basename(new_file).lower()
+        file_case = os.path.join(args.path, full_file)
     #make CamelCase
 
-    os.rename(newfile, filecase)
+    os.rename(new_file, file_case)
 
 if __name__ == '__main__':
     main()

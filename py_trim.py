@@ -15,31 +15,31 @@ def arguments():
     parser = argparse.ArgumentParser(description='Parser')
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-rs', action='store_true', help="This removes spaces")
-    group.add_argument('-su', action='store_true', help="This changes spaces to underscores")
-    group.add_argument('-sm', action='store_true', help="This changes spaces to minuses")
+    group.add_argument('-rs', action='store_true', help='This removes spaces')
+    group.add_argument('-su', action='store_true', help='This changes spaces to underscores')
+    group.add_argument('-sm', action='store_true', help='This changes spaces to minuses')
 
     group_case = parser.add_mutually_exclusive_group()
-    group_case.add_argument('-l', action='store_true', help="This makes all letters lower case")
-    group_case.add_argument('-u', action='store_true', help="This makes all letters upper case")
-    group_case.add_argument('-c', action='store_true', help="This makes the words camel case")
+    group_case.add_argument('-l', action='store_true', help='This makes all letters lower case')
+    group_case.add_argument('-u', action='store_true', help='This makes all letters upper case')
+    group_case.add_argument('-c', action='store_true', help='This makes the words camel case')
 
-    parser.add_argument('--path', type=dir_path, help="This is the path to the folder")
+    parser.add_argument('--path', type=dir_path, help='This is the path to the folder')
 
     return parser.parse_args()
 
 def main():
     #to do: read in files from folder
     args = arguments()
-    #oldfile = os.path.join(args.path, "this is a test file.txt")
-    oldfile = os.path.join(args.path, "THIS_IS_A_TEST_FILE.TXT")
+    #oldfile = os.path.join(args.path, 'this is a test file.txt')
+    oldfile = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
 
     if args.rs:
-        newfile = os.path.join(args.path, "thisisatestfile.txt")
+        newfile = os.path.join(args.path, 'thisisatestfile.txt')
     elif args.su:
-        newfile = os.path.join(args.path, "this_is_a_test_file.txt")
+        newfile = os.path.join(args.path, 'this_is_a_test_file.txt')
     elif args.sm:
-        newfile = os.path.join(args.path, "this-is-a-test-file.txt")
+        newfile = os.path.join(args.path, 'this-is-a-test-file.txt')
 
     os.rename(oldfile, newfile)
 
@@ -56,7 +56,7 @@ def main():
 
     os.rename(newfile, filecase)
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
 
 

@@ -1,7 +1,6 @@
 #! python 3
 # This script will rename files into a defined format.
 import os
-import sys
 import argparse
 
 
@@ -26,16 +25,38 @@ def arguments():
     group_case.add_argument('-c', action='store_true', help="This makes the words camel case")
 
     parser.add_argument('--path', type=dir_path, help="This is the path to the folder")
-    args = parser.parse_args()
-    print(args)
-    oldfile = os.path.join(args.path, "this is a test file.txt")
-    newfile = os.path.join(args.path,"this_is_a_test_file.txt")
+
+    return parser.parse_args()
+
+def main():
+    #to do: read in files from folder
+    args = arguments()
+    #oldfile = os.path.join(args.path, "this is a test file.txt")
+    oldfile = os.path.join(args.path, "THIS_IS_A_TEST_FILE.TXT")
+
+    if args.rs:
+        newfile = os.path.join(args.path, "thisisatestfile.txt")
+    elif args.su:
+        newfile = os.path.join(args.path, "this_is_a_test_file.txt")
+    elif args.sm:
+        newfile = os.path.join(args.path, "this-is-a-test-file.txt")
+
     os.rename(oldfile, newfile)
 
+    if args.l:
+        fullfile = os.path.basename(newfile).lower()
+        filecase = os.path.join(args.path, fullfile)
+    elif args.u:
+        fullfile = os.path.basename(newfile).upper()
+        filecase = os.path.join(args.path, fullfile)
+    elif args.c:
+        fullfile = os.path.basename(newfile).lower()
+        filecase = os.path.join(args.path, fullfile)
+    #make CamelCase
+
+    os.rename(newfile, filecase)
 
 if __name__ == "__main__":
-    #input command line parameters
-        #get path
-        #get format
-    arguments()
+    main()
+
 

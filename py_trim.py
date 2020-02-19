@@ -2,6 +2,8 @@
 # This script will rename files into a defined format.
 import os
 import argparse
+from datetime import datetime
+from pathlib import Path
 
 
 def dir_path(string):
@@ -9,6 +11,11 @@ def dir_path(string):
         return string
     else:
         raise NotADirectoryError(string)
+
+def convert_date(timestamp):
+    d = datetime.utcfromtimestamp(timestamp)
+    formatted_date = d.strftime('%d %b %Y')
+    return formatted_date
 
 
 def arguments():
@@ -28,11 +35,10 @@ def arguments():
 
     return parser.parse_args()
 
-def main():
-    #to do: read in files from folder
-    args = arguments()
-    #old_file = os.path.join(args.path, 'this is a test file.txt')
-    old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
+
+def rename():
+    # old_file = os.path.join(args.path, 'this is a test file.txt')
+    # old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
 
     if args.rs:
         new_file = os.path.join(args.path, 'thisisatestfile.txt')
@@ -52,9 +58,24 @@ def main():
     elif args.c:
         full_file = os.path.basename(new_file).lower()
         file_case = os.path.join(args.path, full_file)
-    #make CamelCase
+    # make CamelCase
 
     os.rename(new_file, file_case)
+
+
+def main():
+    #to do: read in files from folder
+    args = arguments()
+
+    # with os.scandir(args.path) as entries:
+        # for entry in entries:
+
+
+    # pathlib
+    current_dir = Path(args.path)
+    for path in current_dir.iterdir():
+        info = path.stat()
+        print(f'{path.name}\t Last Modified: {convert_date(info.st_mtime)}')
 
 if __name__ == '__main__':
     main()

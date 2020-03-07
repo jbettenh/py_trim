@@ -42,44 +42,34 @@ def arguments():
 def rename():
     # old_file = os.path.join(args.path, 'this is a test file.txt')
     # old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
-
-    if args.rs:
-        new_file = os.path.join(args.path, 'thisisatestfile.txt')
-    elif args.su:
-        new_file = os.path.join(args.path, 'this_is_a_test_file.txt')
-    elif args.sm:
-        new_file = os.path.join(args.path, 'this-is-a-test-file.txt')
-
-    os.rename(old_file, new_file)
-
-    if args.l:
-        full_file = os.path.basename(new_file).lower()
-        file_case = os.path.join(args.path, full_file)
-    elif args.u:
-        full_file = os.path.basename(new_file).upper()
-        file_case = os.path.join(args.path, full_file)
-    elif args.c:
-        full_file = os.path.basename(new_file).lower()
-        file_case = os.path.join(args.path, full_file)
-    # make CamelCase
-
-    os.rename(new_file, file_case)
+    # os.rename(new_file, file_case)
 
 
 def main():
     args = arguments()
 
     for filename in os.listdir(args.path):
-        if fnmatch.fnmatch(filename, '* *'):
-            print(filename)
-            filename = filename.replace(" ", "")
-            print(filename)
+        #info = filename.stat()
+        #print(f'{filename.name}\t Last Modified: {convert_date(info.st_mtime)}')
 
-    # pathlib
-   # current_dir = Path(args.path)
-    #for path in current_dir.iterdir():
-     #   info = path.stat()
-      #  print(f'{path.name}\t Last Modified: {convert_date(info.st_mtime)}')
+        # Convert to upper or lower case
+        if args.l:
+            filename = filename.lower()
+        elif args.u:
+            filename = filename.upper()
+        # elif args.c:  # make CamelCase
+
+
+        # Change spaces
+        if fnmatch.fnmatch(filename, '* *'):
+            if args.rs:
+                filename = filename.replace(" ", "")
+            elif args.su:
+                filename = filename.replace(" ", "_")
+            elif args.sm:
+                filename = filename.replace(" ", "-")
+
+        print(filename)
 
 if __name__ == '__main__':
     main()

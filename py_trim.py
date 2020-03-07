@@ -1,8 +1,11 @@
 #! python 3
 # This script will rename files into a defined format.
-import os
+
 import argparse
 from datetime import datetime
+import fnmatch
+import os
+import re
 from pathlib import Path
 
 
@@ -64,18 +67,19 @@ def rename():
 
 
 def main():
-    #to do: read in files from folder
     args = arguments()
 
-    # with os.scandir(args.path) as entries:
-        # for entry in entries:
-
+    for filename in os.listdir(args.path):
+        if fnmatch.fnmatch(filename, '* *'):
+            print(filename)
+            filename = filename.replace(" ", "")
+            print(filename)
 
     # pathlib
-    current_dir = Path(args.path)
-    for path in current_dir.iterdir():
-        info = path.stat()
-        print(f'{path.name}\t Last Modified: {convert_date(info.st_mtime)}')
+   # current_dir = Path(args.path)
+    #for path in current_dir.iterdir():
+     #   info = path.stat()
+      #  print(f'{path.name}\t Last Modified: {convert_date(info.st_mtime)}')
 
 if __name__ == '__main__':
     main()

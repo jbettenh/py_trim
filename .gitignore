@@ -1,4 +1,5 @@
 /.idea/*
 /venv/*
 /test/*
+/files/*
 /this is a test file.txt

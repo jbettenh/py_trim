@@ -5,8 +5,7 @@ import argparse
 from datetime import datetime
 import fnmatch
 import os
-import re
-from pathlib import Path
+
 
 
 def dir_path(string):
@@ -42,7 +41,7 @@ def arguments():
 def rename():
     # old_file = os.path.join(args.path, 'this is a test file.txt')
     # old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
-    # os.rename(new_file, file_case)
+    os.rename(new_file, file_case)
 
 
 def main():
@@ -51,6 +50,7 @@ def main():
     for filename in os.listdir(args.path):
         #info = filename.stat()
         #print(f'{filename.name}\t Last Modified: {convert_date(info.st_mtime)}')
+        oldfile = os.path.join(args.path, filename)
 
         # Convert to upper or lower case
         if args.l:
@@ -58,7 +58,6 @@ def main():
         elif args.u:
             filename = filename.upper()
         # elif args.c:  # make CamelCase
-
 
         # Change spaces
         if fnmatch.fnmatch(filename, '* *'):
@@ -69,6 +68,8 @@ def main():
             elif args.sm:
                 filename = filename.replace(" ", "-")
 
+        newfile = os.path.join(args.path, filename)
+        os.rename(oldfile, newfile)
         print(filename)
 
 if __name__ == '__main__':

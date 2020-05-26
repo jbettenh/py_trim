@@ -7,12 +7,12 @@ import fnmatch
 import os
 
 
-
 def dir_path(string):
     if os.path.isdir(string):
         return string
     else:
         raise NotADirectoryError(string)
+
 
 def convert_date(timestamp):
     d = datetime.utcfromtimestamp(timestamp)
@@ -31,7 +31,6 @@ def arguments():
     group_case = parser.add_mutually_exclusive_group()
     group_case.add_argument('-l', action='store_true', help='This makes all letters lower case')
     group_case.add_argument('-u', action='store_true', help='This makes all letters upper case')
-    group_case.add_argument('-c', action='store_true', help='This makes the words camel case')
 
     parser.add_argument('--path', type=dir_path, help='This is the path to the folder')
 
@@ -48,8 +47,6 @@ def main():
     args = arguments()
 
     for filename in os.listdir(args.path):
-        #info = filename.stat()
-        #print(f'{filename.name}\t Last Modified: {convert_date(info.st_mtime)}')
         oldfile = os.path.join(args.path, filename)
 
         # Convert to upper or lower case
@@ -57,7 +54,6 @@ def main():
             filename = filename.lower()
         elif args.u:
             filename = filename.upper()
-        # elif args.c:  # make CamelCase
 
         # Change spaces
         if fnmatch.fnmatch(filename, '* *'):
@@ -71,6 +67,7 @@ def main():
         newfile = os.path.join(args.path, filename)
         os.rename(oldfile, newfile)
         print(filename)
+
 
 if __name__ == '__main__':
     main()

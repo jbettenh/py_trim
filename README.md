@@ -13,7 +13,7 @@ Example: [-rs -l --path "D:\code\python3\py_trim\test"]
 
 ## OPTIONS ##
 ### Generic Program Information ###
-    --help, Print a usage message  briefly  summarizing  these  command-line options and then exit.
+    --help, Print a usage message briefly summarizing these command-line options and then exit.
 
 ### Input Control ###
        --path, This is the path to the folder

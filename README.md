@@ -1,9 +1,16 @@
 ## Py Trim
-
+I wrote this program to be able to quickly modify folders and files to a desired naming convention.
+py_trim.py
+It has the following dependencies: argparse,fnmatch, and os.
 
 ## Description
 py_trim can remove or change spaces in folders and file names as well as change the case to upper case or lower case.
 
+## SYNOPSIS ##
+py_trim [OPTIONS]
+py_trim [-Space Control -Case Control --Input Control]
+
+Example: [-rs -l --path "D:\code\python3\py_trim\test"]
 
 ## OPTIONS ##
 ### Generic Program Information ###

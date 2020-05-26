@@ -6,7 +6,7 @@ The main program file to run is py_trim.py. It has the following dependencies: a
 py_trim can remove or change spaces in folders and file names as well as change the case to upper case or lower case.
 
 ## SYNOPSIS ##
-py_trim [OPTIONS]
+py_trim [OPTIONS]  
 py_trim [-Space Control -Case Control --Input Control]
 
 Example: [-rs -l --path "D:\code\python3\py_trim\test"]

@@ -2,7 +2,6 @@
 # This script will rename files into a defined format.
 
 import argparse
-from datetime import datetime
 import fnmatch
 import os
 
@@ -12,12 +11,6 @@ def dir_path(string):
         return string
     else:
         raise NotADirectoryError(string)
-
-
-def convert_date(timestamp):
-    d = datetime.utcfromtimestamp(timestamp)
-    formatted_date = d.strftime('%d %b %Y')
-    return formatted_date
 
 
 def arguments():
@@ -35,12 +28,6 @@ def arguments():
     parser.add_argument('--path', type=dir_path, help='This is the path to the folder')
 
     return parser.parse_args()
-
-
-def rename():
-    # old_file = os.path.join(args.path, 'this is a test file.txt')
-    # old_file = os.path.join(args.path, 'THIS_IS_A_TEST_FILE.TXT')
-    os.rename(new_file, file_case)
 
 
 def main():
